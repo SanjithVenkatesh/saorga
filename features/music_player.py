@@ -4,9 +4,9 @@ Music player
 @created: March 24, 2021
 """
 from playsound import playsound
-import multiprocessing
+import multiprocessing, os
 
-music_folder = "/Users/sanjithvenkatesh/Music/"
+music_folder = "/Users/sanjithvenkatesh/Music/google"
 
 def play_song(song):
     p = multiprocessing.Process(target=playsound, args=(music_folder + song,))
@@ -14,4 +14,10 @@ def play_song(song):
     input("press enter to terminate")
     p.terminate()
 
+def add_song(song):
+    print("Add song: " + str(song))
+
+def encode_songs():
+    for filename in os.listdir(music_folder):
+        os.rename(filename, str(hash(filename)))
 
